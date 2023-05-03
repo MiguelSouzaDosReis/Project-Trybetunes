@@ -1,62 +1,76 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
-import Carregando from './Carregando';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       carregando: false,
       check: false,
     };
   }
 
-  AdicionarMusica = async () => {
-    const { element } = this.props;
-    this.setState({ carregando: true });
-    await addSong({ element });
-    this.setState({ carregando: false, check: true });
+  componentDidMount() {
+    const { favoritePage } = this.props;
+    if (favoritePage) {
+      this.setState({ check: true });
+    }
   }
 
-  render() {
+  handleAddSong = async () => {
     const { element } = this.props;
-    const { carregando, check } = this.state;
+    this.setState({ carregando: true });
+    await addSong(element);
+    this.setState({ carregando: false, check: true });
+  };
+
+  handleRemoveSong = async () => {
+    const { element, onRemove } = this.props;
+    this.setState({ carregando: true });
+    await removeSong(element.trackId);
+    this.setState({ carregando: false, check: false });
+    onRemove();
+  };
+
+  render() {
+    const { element, playing, favoritePage } = this.props;
+    const { check } = this.state;
     return (
-      <div>
-        {carregando && <Carregando /> }
+      <div className='audioContainer'>
+        {check && !favoritePage && <p className='WordFavorite'>Música adicionada aos favoritos</p>}
 
-        <p>{element.trackName}</p>
-        <audio data-testid="audio-component" src={ element.previewUrl } controls>
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          <code>audio</code>
-          .
-        </audio>
+        <p className='NameOfMusic'>{element.trackName}</p>
 
-        <label htmlFor={ element.trackId }>
-
-          <input
-            id={ element.trackId }
-            data-testid={ `checkbox-music-${element.trackId}` }
-            type="checkbox"
-            checked={ check }
-            onChange={ this.AdicionarMusica }
-          />
-          {' '}
-          Favorita
-        </label>
+        <div className='audioPlayer'>
+          <audio className='audio' src={element.previewUrl} controls autoPlay={playing} />
+          {favoritePage ? (
+            <button className='buttonRemove' type="button" onClick={this.handleRemoveSong}>
+              Remover dos favoritos
+            </button>
+          ) : (
+            <button className='buttonFavorite' type="button" onClick={this.handleAddSong}>
+              Adicionar aos favoritos
+            </button>
+          )}
+        </div>
       </div>
-
     );
   }
 }
+
 MusicCard.propTypes = {
-  element: PropTypes.shape({
-    trackName: PropTypes.string,
-    previewUrl: PropTypes.string,
-    trackId: PropTypes.number,
-  }).isRequired,
+  element: PropTypes.object.isRequired,
+  playing: PropTypes.bool,
+  onPlay: PropTypes.func.isRequired,
+  favoritePage: PropTypes.bool,
+  onRemove: PropTypes.func,
+};
+
+MusicCard.defaultProps = {
+  playing: false,
+  favoritePage: false,
+  onRemove: () => {},
 };
 
 export default MusicCard;

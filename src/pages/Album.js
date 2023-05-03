@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import musicsAPI from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
-import Carregando from '../components/Carregando';
 
 class Album extends React.Component {
   constructor() {
@@ -56,18 +55,18 @@ class Album extends React.Component {
   }
 
   render() {
-    const { artistName, collectionName, artworkUrl100, album, carregando } = this.state;
+    const { artistName, collectionName, artworkUrl100, album } = this.state;
     return (
-      <div data-testid="page-album">
+      <div>
         <Header />
-        {carregando && <Carregando />}
-        <h1 data-testid="artist-name">{ artistName }</h1>
-        <h2 data-testid="album-name">{ collectionName }</h2>
-        <img src={ artworkUrl100 } alt={ collectionName } />
-        {album.slice(1).map((element) => (
-          <MusicCard key={ element.collectionId } element={ element } />
-        ))}
-
+        <div className='containerCard'>
+          <h1 className='artistNameMusicCard'>{ artistName }</h1>
+          <h2 className='collectionNameMusicCard'>{ collectionName }</h2>
+          <img className='imagemMusicCard'  width="200" src={ artworkUrl100 } alt={ collectionName } />
+          {album.slice(1).map((element) => (
+            <MusicCard key={ element.collectionId } element={ element } />
+          ))}
+        </div>
       </div>
     );
   }

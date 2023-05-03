@@ -7,6 +7,7 @@ import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import NotFound from './pages/NotFound';
+import './App.css'
 
 class App extends React.Component {
   constructor() {
@@ -18,10 +19,9 @@ class App extends React.Component {
   }
 
   HabilitarOBotao = (event) => {
-    const um = 1;
     const { name } = this.state;
     this.setState({ name: event.target.value });
-    if (name.length > um) {
+    if (name.length >= 0) {
       this.setState({
         botoaDesabilidado: false,
       });
@@ -32,7 +32,6 @@ class App extends React.Component {
     const { botoaDesabilidado, name } = this.state;
     return (
       <BrowserRouter>
-        <p>Trybetunes</p>
         <Route
           exact
           path="/"

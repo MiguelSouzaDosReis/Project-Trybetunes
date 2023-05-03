@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import { createUser } from '../services/userAPI';
-import Carregando from '../components/Carregando';
 
 class Logins extends React.Component {
   constructor() {
@@ -24,28 +23,32 @@ class Logins extends React.Component {
 
   render() {
     const { botoaDesabilidado, name, HabilitarOBotao } = this.props;
-    const { carregando, redirect } = this.state;
+    const { redirect } = this.state;
     return (
-      <div data-testid="page-login">
-        {carregando && <Carregando />}
-        {redirect && <Redirect to="/search" />}
-        <form>
-          <input
-            value={ name }
-            data-testid="login-name-input"
-            type="text"
-            onChange={ HabilitarOBotao }
-          />
-          <button
-            data-testid="login-submit-button"
-            onClick={ this.CarregandoTrue }
-            type="submit"
-            disabled={ botoaDesabilidado }
-          >
-            Entrar
-          </button>
-        </form>
-
+      <div>
+          <h1 className='title'>Trybetunes</h1>
+        <div className='container'>
+          {redirect && <Redirect to="/search" />}
+          <form>
+            <input
+              className='text'
+              value={ name }
+              data-testid="login-name-input"
+              type="text"
+              onChange={ HabilitarOBotao }
+              placeholder='name'
+            />
+            <button
+              data-testid="login-submit-button"
+              onClick={ this.CarregandoTrue }
+              type="submit"
+              disabled={ botoaDesabilidado }
+              className='enter'
+            >
+              Entrar
+            </button>
+          </form>
+        </div>
       </div>
 
     );

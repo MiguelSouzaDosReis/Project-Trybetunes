@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Carregando from './Carregando';
 
+const DEFAULT_PROFILE_IMAGE = 'https://cdn0.iconfinder.com/data/icons/head-1/128/10-512.png';
+
 class Header extends React.Component {
   constructor() {
     super();
@@ -23,17 +25,31 @@ class Header extends React.Component {
       }));
   }
 
+  getImageUrl(objeto) {
+    if (this.state.carregando) {
+      return "https://convertingcolors.com/chess-F2F2F2.svg" ;
+    } else if (objeto.image) {
+      return objeto.image;
+    } else {
+      return DEFAULT_PROFILE_IMAGE;
+    }
+  }
+
   render() {
     const { objeto, carregando } = this.state;
     return (
-      <header data-testid="header-component">
-        <span data-testid="header-user-name">
-          {objeto.name}
+      <header>
+        <h1 className='titleHeader'>Trybetunes</h1>
+        <span>
+          <p> {objeto.name} </p>
+          <img src={this.getImageUrl(objeto)} alt="Imagem do perfil" />
         </span>
         {carregando && <Carregando />}
-        <Link data-testid="link-to-search" to="/search">Search</Link>
-        <Link data-testid="link-to-favorites" to="/favorites"> Favoritos </Link>
-        <Link data-testid="link-to-profile" to="/profile"> Profile </Link>
+        <div className='navbar'>
+          <Link className="navbar-link" to="/search">Search</Link>
+          <Link className="navbar-link" to="/favorites"> Favoritos </Link>
+          <Link className="navbar-link" to="/profile"> Profile </Link>
+        </div>
       </header>
     );
   }
