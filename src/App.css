@@ -316,3 +316,10 @@ span img {
 .buttonRemove:hover {
   background-color: darkred;
 }
+
+@media only screen and (max-width: 767px) {
+  .titleHeader {
+      letter-spacing: 4px;
+  }
+}
+
