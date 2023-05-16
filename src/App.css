@@ -319,42 +319,22 @@ span img {
 }
 
 @media (max-width: 600px) {
-  .container {
-    max-width: 100%;
-    top: 120px;
-    padding: 10px;
+  span {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
   }
 
-  .titleHeader {
-    margin-top: 10px;
-  }
-
-  .title {
-    top: 100px;
-    margin-top: 20px;
-  }
-
-  .name {
-    margin-top: 10px;
-  }
-
-  form {
-    margin-top: 20px;
-  }
-
-  input[type="text"],
-  input[type="password"] {
-    padding: 8px;
-    margin-bottom: 15px;
-  }
-
-  .navbar {
-    height: 60px;
-    padding: 0 10px;
-  }
-
-  .navbar-link {
+  span p {
     font-size: 14px;
-    margin-right: 10px;
+    margin: 0;
+  }
+
+  span img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
   }
 }
