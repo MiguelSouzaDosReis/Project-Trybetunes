@@ -70,7 +70,6 @@ span {
   right: 0;
   display: flex;
   align-items: center;
-  margin: -10px;
 }
 
 span p {
@@ -317,4 +316,40 @@ span img {
 
 .buttonRemove:hover {
   background-color: darkred;
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    top: 120px;
+    padding: 10px;
+  }
+
+  .titleHeader {
+    margin-top: 10px;
+  }
+
+  .title {
+    top: 100px;
+  }
+
+  form {
+    margin-top: 20px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 8px;
+    margin-bottom: 15px;
+  }
+
+  .navbar {
+    height: 60px;
+    padding: 0 10px;
+  }
+
+  .navbar-link {
+    font-size: 14px;
+    margin-right: 10px;
+  }
 }
