@@ -84,6 +84,11 @@ span img {
   margin-right: 10px;
 }
 
+
+.imageLillte{
+  width: 300px;
+}
+
 .loader {
   font-size: 24px;
   color: #333;
@@ -329,7 +334,7 @@ span img {
 
   span p {
     font-size: 14px;
-    margin: 0;
+    margin: 2;
   }
 
   span img {

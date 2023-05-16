@@ -110,7 +110,6 @@ return (
           />
         </label>
                 <label htmlFor="edit-input-image">
-          <img src={image} alt="Imagem do perfil" />
           <input
             id="edit-input-image"
             type="file"
@@ -118,6 +117,7 @@ return (
             onChange={this.handleFileInputChange}
             className='inputImage'
           />
+          <img className='imageLillte' src={image}/>
         </label>
         <button
           type="submit"
