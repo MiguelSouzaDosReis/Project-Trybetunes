@@ -331,6 +331,11 @@ span img {
 
   .title {
     top: 100px;
+    margin-top: 20px;
+  }
+
+  .name {
+    margin-top: 10px;
   }
 
   form {
