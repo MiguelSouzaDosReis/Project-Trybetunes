@@ -41,7 +41,7 @@ class Header extends React.Component {
       <header>
         <h1 className='titleHeader'>Trybetunes</h1>
         <span>
-          <p> {objeto.name} </p>
+          <p className='name'> {objeto.name} </p>
           <img src={this.getImageUrl(objeto)} alt="Imagem do perfil" />
         </span>
         {carregando && <Carregando />}

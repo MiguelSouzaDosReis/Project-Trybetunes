@@ -30,6 +30,10 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
+.name{
+  margin-left: 10px;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -316,10 +320,3 @@ span img {
 .buttonRemove:hover {
   background-color: darkred;
 }
-
-@media only screen and (max-width: 767px) {
-  .titleHeader {
-      letter-spacing: 4px;
-  }
-}
-
